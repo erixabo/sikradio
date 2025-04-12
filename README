@@ -1,0 +1,91 @@
+# 📡 SiK Rádió Konfigurátor – by erixabo
+
+Ez a Python szkript lehetővé teszi **3DR/SiK kompatibilis rádiómodulok** konfigurációs paramétereinek:
+
+- 📥 kiolvasását (`ATI0`–`ATI7`),
+- 📝 mentését `.json` fájlba,
+- 📤 visszatöltését a rádióba (`ATS0`–`ATS15` formátumban),
+- 💾 EEPROM-ba írását (`AT&W`) és 🔁 újraindítását (`ATZ`).
+
+Hasznos például, ha:
+
+- több rádiót szeretnél azonos konfigurációval beállítani,
+- menteni szeretnéd egy rádió beállításait,
+- automatizálni akarod a klónozást vagy tömeges programozást.
+
+---
+
+## 🔧 Követelmények
+
+- Python **3.7+**
+- `pyserial` csomag:
+
+```bash
+pip install pyserial
+
+⚙️ Használat
+
+🔎 Rádió beállításainak kiolvasása: 
+
+    python sikr.py -r /dev/ttyUSB0 jsonfile
+
+    Ez:
+    belépteti a rádiót AT módba (+++),
+    lekérdezi az ATI0–ATI7 válaszokat,
+    elmenti az eredményt a kimentett.json fájlba.
+
+📝 Konfiguráció visszaírása rádióba:
+
+    python sikr.py -w /dev/ttyUSB0 jsonfile
+
+    Ez:
+    beolvassa a kimentett.json fájlt,
+    az ATI5 mező alapján ATS0–ATS15 parancsokat állít elő,
+    visszaírja őket a rádióba,
+    majd végrehajtja az AT&W és ATZ parancsokat.
+
+🧪 Példa
+
+    # Beállítások mentése
+    python sikr.py -r /dev/ttyUSB0 kanyhalo.json
+
+    # Szükség esetén kézi módosítás pl nano -val.
+
+    # Visszatöltés
+    python sikr.py -w /dev/ttyUSB0 kanyhalo.json
+
+📁 JSON fájlformátum
+    A kiolvasott JSON fájl így nézhet ki:
+
+    {
+        "ATI0": [
+        "ATI0",
+        "SiK 2.2 on HM-TRP"
+        ],
+             ...
+        "ATI5": [
+        "ATI5",
+        "S0:FORMAT=26",
+        "S1:SERIAL_SPEED=57",
+        "S2:AIR_SPEED=32",
+        ...
+        "S15:MAX_WINDOW=131"
+        ]
+    }
+
+A szkript automatikusan felismeri az ATI5 sorokat, és azokból ATSx=n formájú beállító parancsokat generál.
+
+🛠️ Megjegyzések
+    Az AT mód csak akkor működik, ha:
+    nincs aktív kapcsolat a másik rádióval (érdemes kihúzni),
+    legalább 1 másodperc csend van a +++ parancs előtt és után.
+    A +++ után NEM szabad sortörést (\r\n) küldeni, a szkript ezt helyesen kezeli.
+    A szkript minden ATSx=n írásnál megjeleníti a válaszokat (OK, ERROR, stb).
+
+📡 Támogatott rádiók
+    Bármely rádió, amely használja a SiK firmware-t, például:
+    3DR rádiók (433/915 MHz)
+    RFD900 és kompatibilis modulok
+    HM-TRP (HopeRF)
+    DIY klónok SiK firmware-rel
+
