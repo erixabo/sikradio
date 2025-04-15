@@ -1,0 +1,51 @@
+{
+  "ATI0": [
+    "ATI0",
+    "RFD SiK 2.0 on HM-TRP"
+  ],
+  "ATI1": [
+    "ATI1",
+    "2.0"
+  ],
+  "ATI2": [
+    "ATI2",
+    "78"
+  ],
+  "ATI3": [
+    "ATI3",
+    "67"
+  ],
+  "ATI4": [
+    "ATI4",
+    "1"
+  ],
+  "ATI5": [
+    "ATI5",
+    "S0:FORMAT=26",
+    "S1:SERIAL_SPEED=57",
+    "S2:AIR_SPEED=64",
+    "S3:NETID=69",
+    "S4:TXPOWER=20",
+    "S5:ECC=0",
+    "S6:MAVLINK=1",
+    "S7:OPPRESEND=0",
+    "S8:MIN_FREQ=426900",
+    "S9:MAX_FREQ=436900",
+    "S10:NUM_CHANNELS=10",
+    "S11:DUTY_CYCLE=100",
+    "S12:LBT_RSSI=0",
+    "S13:MANCHESTER=0",
+    "S14:RTSCTS=0",
+    "S15:MAX_WINDOW=131"
+  ],
+  "ATI6": [
+    "ATI6",
+    "silence_period: 260",
+    "tx_window_width: 7140",
+    "max_data_packet_length: 250"
+  ],
+  "ATI7": [
+    "ATI7",
+    "L/R RSSI: 84/0  L/R noise: 94/0 pkts: 0  txe=0 rxe=0 stx=0 srx=0 ecc=0/0 temp=-276 dco=0"
+  ]
+}

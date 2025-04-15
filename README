@@ -27,22 +27,26 @@ pip install pyserial
 
 🔎 Rádió beállításainak kiolvasása: 
 
-    python sikr.py -r /dev/ttyUSB0 jsonfile
+    python sikr.py -r /dev/ttyUSB0 jsonfile --baud 57600
 
     Ez:
     belépteti a rádiót AT módba (+++),
     lekérdezi az ATI0–ATI7 válaszokat,
     elmenti az eredményt a kimentett.json fájlba.
+    A `--baud` paraméter opcionális, alapértelmezett értéke 57600.
 
 📝 Konfiguráció visszaírása rádióba:
 
-    python sikr.py -w /dev/ttyUSB0 jsonfile
+    python sikr.py -w /dev/ttyUSB0 jsonfile --baud 57600
 
     Ez:
     beolvassa a kimentett.json fájlt,
     az ATI5 mező alapján ATS0–ATS15 parancsokat állít elő,
     visszaírja őket a rádióba,
     majd végrehajtja az AT&W és ATZ parancsokat.
+    A `--baud` paraméter opcionális, alapértelmezett értéke 57600.
+
+    
 
 🧪 Példa
 
