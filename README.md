@@ -1,4 +1,4 @@
-# 📡 SiK Rádió Konfigurátor – by erixabo
+# 📡 SiK Rádió Konfigurátor – erixabo (MIT)
 
 Ez a Python szkript lehetővé teszi **3DR/SiK kompatibilis rádiómodulok** konfigurációs paramétereinek:
 
@@ -22,14 +22,16 @@ Hasznos például, ha:
 
 ```bash
 pip install pyserial
-
-⚙️ Használat
+```
+## ⚙️ Használat
 
 🔎 Rádió beállításainak kiolvasása: 
 
+```bash
     python sikr.py -r /dev/ttyUSB0 jsonfile --baud 57600
+```
 
-    Ez:
+📥 Ez:
     belépteti a rádiót AT módba (+++),
     lekérdezi az ATI0–ATI7 válaszokat,
     elmenti az eredményt a kimentett.json fájlba.
@@ -37,9 +39,10 @@ pip install pyserial
 
 📝 Konfiguráció visszaírása rádióba:
 
+```bash
     python sikr.py -w /dev/ttyUSB0 jsonfile --baud 57600
-
-    Ez:
+```
+📤 Ez:
     beolvassa a kimentett.json fájlt,
     az ATI5 mező alapján ATS0–ATS15 parancsokat állít elő,
     visszaírja őket a rádióba,
@@ -50,12 +53,15 @@ pip install pyserial
 
 🧪 Példa
 
-    # Beállítások mentése
+## Beállítások mentése
+
+```bash
     python sikr.py -r /dev/ttyUSB0 kanyhalo.json
+```
+Szükség esetén kézi módosítás pl nano -val.
 
-    # Szükség esetén kézi módosítás pl nano -val.
+## Visszatöltés
 
-    # Visszatöltés
     python sikr.py -w /dev/ttyUSB0 kanyhalo.json
 
 📁 JSON fájlformátum
